@@ -28,18 +28,19 @@ export default class Form extends Component {
             type="text"
             value={ cardName }
             onChange={ onInputChange }
+            name="cardName"
           />
         </label>
         <label htmlFor="description">
           Descrição
           <textarea
-            name="description"
             id="description"
             data-testid="description-input"
             cols="30"
             rows="10"
             value={ cardDescription }
             onChange={ onInputChange }
+            name="cardDescription"
           />
         </label>
         <label htmlFor="attr1">
@@ -50,6 +51,7 @@ export default class Form extends Component {
             type="number"
             value={ cardAttr1 }
             onChange={ onInputChange }
+            name="cardAttr1"
           />
         </label>
         <label htmlFor="attr2">
@@ -60,6 +62,7 @@ export default class Form extends Component {
             type="number"
             value={ cardAttr2 }
             onChange={ onInputChange }
+            name="cardAttr2"
           />
         </label>
         <label htmlFor="attr3">
@@ -70,6 +73,7 @@ export default class Form extends Component {
             type="number"
             value={ cardAttr3 }
             onChange={ onInputChange }
+            name="cardAttr3"
           />
         </label>
         <label htmlFor="image">
@@ -80,12 +84,13 @@ export default class Form extends Component {
             type="text"
             value={ cardImage }
             onChange={ onInputChange }
+            name="cardImage"
           />
         </label>
         <label htmlFor="rare">
           Raridade
           <select
-            name="rare"
+            name="cardRare"
             id="rare"
             data-testid="rare-input"
             value={ cardRare }
@@ -99,7 +104,7 @@ export default class Form extends Component {
         <label htmlFor="trunfo">
           Super Trybe Trunfo
           <input
-            name="trunfo"
+            name="cardTrunfo"
             id="trunfo"
             data-testid="trunfo-input"
             type="checkbox"
