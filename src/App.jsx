@@ -109,6 +109,19 @@ class App extends React.Component {
     );
   };
 
+  deleteCart = ({ target }) => {
+    const { saveInformation } = this.state;
+    const arrInformation = saveInformation.filter(
+      (card) => card.cardName !== target.name,
+    );
+    if (saveInformation.find((card) => card.cardName === target.name)) {
+      this.setState({
+        hasTrunfo: false,
+        saveInformation: arrInformation,
+      });
+    } else this.setState({ saveInformation: arrInformation });
+  };
+
   render() {
     const {
       cardName,
@@ -153,17 +166,28 @@ class App extends React.Component {
         </div>
         <div>
           {saveInformation.map((card) => (
-            <Card
-              key={ card.cardName }
-              cardName={ card.cardName }
-              cardDescription={ card.cardDescription }
-              cardAttr1={ card.cardAttr1 }
-              cardAttr2={ card.cardAttr2 }
-              cardAttr3={ card.cardAttr3 }
-              cardImage={ card.cardImage }
-              cardRare={ card.cardRare }
-              cardTrunfo={ card.cardTrunfo }
-            />
+            <div key={ `div-${card.cardName}` }>
+              <Card
+                key={ card.cardName }
+                cardName={ card.cardName }
+                cardDescription={ card.cardDescription }
+                cardAttr1={ card.cardAttr1 }
+                cardAttr2={ card.cardAttr2 }
+                cardAttr3={ card.cardAttr3 }
+                cardImage={ card.cardImage }
+                cardRare={ card.cardRare }
+                cardTrunfo={ card.cardTrunfo }
+              />
+              <button
+                key={ `delete-button-${card.cardName}` }
+                name={ card.cardName }
+                type="button"
+                data-testid="delete-button"
+                onClick={ this.deleteCart }
+              >
+                Excluir
+              </button>
+            </div>
           ))}
         </div>
       </>
