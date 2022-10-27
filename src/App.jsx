@@ -13,6 +13,7 @@ class App extends React.Component {
     cardRare: 'normal',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
+    saveInformation: [],
   };
 
   checkSaveButton = () => {
@@ -42,6 +43,48 @@ class App extends React.Component {
     ) {
       this.setState({ isSaveButtonDisabled: false });
     } else this.setState({ isSaveButtonDisabled: true });
+  };
+
+  onSaveButtonClick = () => {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      saveInformation,
+    } = this.state;
+    const arrInformation = saveInformation;
+    arrInformation.push({
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    });
+    this.setState(
+      {
+        saveInformation: arrInformation,
+      },
+      () => {
+        this.setState({
+          cardName: '',
+          cardDescription: '',
+          cardAttr1: '0',
+          cardAttr2: '0',
+          cardAttr3: '0',
+          cardImage: '',
+          cardRare: 'normal',
+          cardTrunfo: false,
+        });
+      },
+    );
   };
 
   onInputChange = ({ target: { name, value, type, checked } }) => {
@@ -83,7 +126,7 @@ class App extends React.Component {
           hasTrunfo
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
-          onSaveButtonClick
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           cardName={ cardName }
