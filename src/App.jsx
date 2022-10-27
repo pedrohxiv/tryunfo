@@ -12,6 +12,7 @@ class App extends React.Component {
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
+    hasTrunfo: false,
     isSaveButtonDisabled: true,
     saveInformation: [],
   };
@@ -25,6 +26,7 @@ class App extends React.Component {
       cardAttr3,
       cardImage,
       cardRare,
+      saveInformation,
     } = this.state;
     const limitSum = 210;
     const limitNum = 90;
@@ -43,6 +45,9 @@ class App extends React.Component {
     ) {
       this.setState({ isSaveButtonDisabled: false });
     } else this.setState({ isSaveButtonDisabled: true });
+    this.setState({
+      hasTrunfo: saveInformation.some((card) => card.cardTrunfo),
+    });
   };
 
   onSaveButtonClick = () => {
@@ -73,16 +78,21 @@ class App extends React.Component {
         saveInformation: arrInformation,
       },
       () => {
-        this.setState({
-          cardName: '',
-          cardDescription: '',
-          cardAttr1: '0',
-          cardAttr2: '0',
-          cardAttr3: '0',
-          cardImage: '',
-          cardRare: 'normal',
-          cardTrunfo: false,
-        });
+        this.setState(
+          {
+            cardName: '',
+            cardDescription: '',
+            cardAttr1: '0',
+            cardAttr2: '0',
+            cardAttr3: '0',
+            cardImage: '',
+            cardRare: 'normal',
+            cardTrunfo: false,
+          },
+          () => {
+            this.checkSaveButton();
+          },
+        );
       },
     );
   };
@@ -97,7 +107,6 @@ class App extends React.Component {
         this.checkSaveButton();
       },
     );
-    this.checkSaveButton();
   };
 
   render() {
@@ -110,6 +119,7 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
     } = this.state;
     return (
@@ -123,7 +133,7 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
-          hasTrunfo
+          hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
