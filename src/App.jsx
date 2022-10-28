@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
 
-class App extends React.Component {
+export default class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
@@ -15,6 +15,8 @@ class App extends React.Component {
     hasTrunfo: false,
     isSaveButtonDisabled: true,
     saveInformation: [],
+    informationFiltered: [],
+    trunfoChecked: false,
   };
 
   checkSaveButton = () => {
@@ -30,8 +32,7 @@ class App extends React.Component {
     } = this.state;
     const limitSum = 210;
     const limitNum = 90;
-    if (
-      cardName.length > 0
+    if (cardName.length > 0
       && cardDescription.length > 0
       && cardImage.length > 0
       && cardRare.length > 0
@@ -41,13 +42,10 @@ class App extends React.Component {
       && Number(cardAttr1) <= limitNum
       && Number(cardAttr2) <= limitNum
       && Number(cardAttr3) <= limitNum
-      && Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) <= limitSum
-    ) {
+      && Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) <= limitSum) {
       this.setState({ isSaveButtonDisabled: false });
     } else this.setState({ isSaveButtonDisabled: true });
-    this.setState({
-      hasTrunfo: saveInformation.some((card) => card.cardTrunfo),
-    });
+    this.setState({ hasTrunfo: saveInformation.some((card) => card.cardTrunfo) });
   };
 
   onSaveButtonClick = () => {
@@ -74,9 +72,8 @@ class App extends React.Component {
       cardTrunfo,
     });
     this.setState(
-      {
-        saveInformation: arrInformation,
-      },
+      { saveInformation: arrInformation,
+        informationFiltered: arrInformation },
       () => {
         this.setState(
           {
@@ -89,9 +86,7 @@ class App extends React.Component {
             cardRare: 'normal',
             cardTrunfo: false,
           },
-          () => {
-            this.checkSaveButton();
-          },
+          () => { this.checkSaveButton(); },
         );
       },
     );
@@ -100,12 +95,8 @@ class App extends React.Component {
   onInputChange = ({ target: { name, value, type, checked } }) => {
     value = type === 'checkbox' ? checked : value;
     this.setState(
-      {
-        [name]: value,
-      },
-      () => {
-        this.checkSaveButton();
-      },
+      { [name]: value },
+      () => { this.checkSaveButton(); },
     );
   };
 
@@ -118,8 +109,31 @@ class App extends React.Component {
       this.setState({
         hasTrunfo: false,
         saveInformation: arrInformation,
+        informationFiltered: arrInformation,
       });
     } else this.setState({ saveInformation: arrInformation });
+  };
+
+  nameFilter = ({ target }) => {
+    const { saveInformation } = this.state;
+    this.setState({ informationFiltered: saveInformation
+      .filter((card) => card.cardName.includes(target.value)) });
+  };
+
+  rareFilter = ({ target }) => {
+    const { saveInformation } = this.state;
+    let arrInformation = saveInformation
+      .filter((card) => card.cardRare === target.value);
+    if (target.value === 'todas') arrInformation = saveInformation;
+    this.setState({ informationFiltered: arrInformation });
+  };
+
+  trunfoFilter = ({ target }) => {
+    const { saveInformation } = this.state;
+    this.setState({ informationFiltered: saveInformation
+      .filter((card) => card.cardTrunfo === target.checked),
+    trunfoChecked: target.checked,
+    });
   };
 
   render() {
@@ -134,8 +148,10 @@ class App extends React.Component {
       cardTrunfo,
       hasTrunfo,
       isSaveButtonDisabled,
-      saveInformation,
+      informationFiltered,
+      trunfoChecked,
     } = this.state;
+
     return (
       <>
         <div>
@@ -165,7 +181,44 @@ class App extends React.Component {
           />
         </div>
         <div>
-          {saveInformation.map((card) => (
+          <label htmlFor="name-filter">
+            Filtrar por Nome
+            <input
+              name="name-filter"
+              id="name-filter"
+              data-testid="name-filter"
+              type="text"
+              onChange={ this.nameFilter }
+              disabled={ trunfoChecked }
+            />
+          </label>
+          <label htmlFor="rare-filter">
+            Filtrar por Raridade
+            <select
+              name="rare-filter"
+              id="rare-filter"
+              data-testid="rare-filter"
+              onChange={ this.rareFilter }
+              disabled={ trunfoChecked }
+            >
+              <option value="todas">todas</option>
+              <option value="normal">normal</option>
+              <option value="raro">raro</option>
+              <option value="muito raro">muito raro</option>
+            </select>
+          </label>
+          <label htmlFor="trunfo-filter">
+            Filtrar por Super Trunfo
+            <input
+              name="trunfo-filter"
+              id="trunfo-filter"
+              data-testid="trunfo-filter"
+              type="checkbox"
+              checked={ trunfoChecked }
+              onChange={ this.trunfoFilter }
+            />
+          </label>
+          {informationFiltered.map((card) => (
             <div key={ `div-${card.cardName}` }>
               <Card
                 key={ card.cardName }
@@ -194,5 +247,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default App;
