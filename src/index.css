@@ -5,9 +5,145 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #052727;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.creation-div {
+  background-color: white;
+  width: 1024px;
+  height: 721px;
+  margin: 100px auto;
+  border-radius: 20px;
+  box-shadow: 0 4px 19px rgb(0, 0, 0, 0.8);
+}
+
+.form-div {
+  float: left;
+  width: 404px;
+  display: flex;
+  text-align: start;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  margin-left: 60px;
+}
+
+.card-div {
+  float: right;
+  width: 350.17px;
+  text-align: center;
+  height: 534.33px;
+  border: 9px solid #036b52;
+  margin: 30px 87px 30px 0;
+  box-shadow: 0px 3.89311px 18.4923px rgba(0, 0, 0, 0.25);
+  border-radius: 9.73277px;
+}
+
+.form-title,
+.card-title {
+  font-style: italic;
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 29px;
+  text-transform: uppercase;
+  color: #2fc18c;
+  text-align: center;
+}
+
+.card-title {
+  padding-top: 40px;
+}
+
+.form-title {
+  margin: 30px 0;
+}
+
+#name {
+  width: 365px;
+  display: block;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  height: 35px;
+}
+
+#description {
+  width: 365px;
+  display: block;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  height: 108px;
+}
+
+#attr1,
+#attr2,
+#attr3 {
+  width: 296px;
+  display: inline;
+  margin-left: 20px;
+  height: 26px;
+}
+
+#image {
+  width: 295px;
+  display: inline;
+  margin-left: 10px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  height: 26px;
+}
+
+#rare {
+  width: 371px;
+  height: 26px;
+  display: block;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  height: 35px;
+  background-color: white;
+  margin-top: 10px;
+}
+
+#trunfo {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+#save-button {
+  margin-left: 97px;
+  filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.06))
+    drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.1));
+  border-radius: 2px;
+  background-color: #2fc18c;
+  width: 115px;
+  height: 40px;
+  color: white;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  transition: 1s;
+}
+
+#save-button:disabled {
+  background-color: rgb(210, 210, 210);
+}
+
+.form-div p {
+  width: 371px;
+  text-align: end;
+}
+
+.form-div span {
+  margin: 30px;
 }

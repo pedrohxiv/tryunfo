@@ -19,7 +19,8 @@ export default class Form extends Component {
     } = this.props;
 
     return (
-      <div>
+      <div className="form-div">
+        <h2 className="form-title">Adicione nova carta</h2>
         <label htmlFor="name">
           Nome
           <input
@@ -101,30 +102,38 @@ export default class Form extends Component {
             <option value="muito raro">muito raro</option>
           </select>
         </label>
-        {hasTrunfo ? (
-          <span>Você já tem um Super Trunfo em seu baralho</span>
-        ) : (
-          <label htmlFor="trunfo">
-            Super Trybe Trunfo
-            <input
-              name="cardTrunfo"
-              id="trunfo"
-              data-testid="trunfo-input"
-              type="checkbox"
-              checked={ cardTrunfo }
-              onChange={ onInputChange }
-            />
-          </label>
-        )}
-        <button
-          name="isSaveButtonDisabled"
-          data-testid="save-button"
-          type="button"
-          disabled={ isSaveButtonDisabled }
-          onClick={ onSaveButtonClick }
-        >
-          Salvar
-        </button>
+        <p>
+          {`Total de Pontos = ${
+            (Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3))
+          }`}
+        </p>
+        <div>
+          {hasTrunfo ? (
+            <span>Você já tem um Super Trunfo em seu baralho</span>
+          ) : (
+            <label htmlFor="trunfo">
+              Super Trybe Trunfo
+              <input
+                name="cardTrunfo"
+                id="trunfo"
+                data-testid="trunfo-input"
+                type="checkbox"
+                checked={ cardTrunfo }
+                onChange={ onInputChange }
+              />
+            </label>
+          )}
+          <button
+            name="isSaveButtonDisabled"
+            id="save-button"
+            data-testid="save-button"
+            type="button"
+            disabled={ isSaveButtonDisabled }
+            onClick={ onSaveButtonClick }
+          >
+            Salvar
+          </button>
+        </div>
       </div>
     );
   }

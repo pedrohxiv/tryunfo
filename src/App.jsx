@@ -154,7 +154,7 @@ export default class App extends React.Component {
 
     return (
       <>
-        <div>
+        <div className="creation-div">
           <Form
             cardName={ cardName }
             cardDescription={ cardDescription }
@@ -169,6 +169,7 @@ export default class App extends React.Component {
             onInputChange={ this.onInputChange }
             onSaveButtonClick={ this.onSaveButtonClick }
           />
+          <h2 className="card-title">pré-visualização</h2>
           <Card
             cardName={ cardName }
             cardDescription={ cardDescription }
