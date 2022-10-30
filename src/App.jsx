@@ -72,8 +72,7 @@ export default class App extends React.Component {
       cardTrunfo,
     });
     this.setState(
-      { saveInformation: arrInformation,
-        informationFiltered: arrInformation },
+      { saveInformation: arrInformation, informationFiltered: arrInformation },
       () => {
         this.setState(
           {
@@ -181,9 +180,10 @@ export default class App extends React.Component {
             cardTrunfo={ cardTrunfo }
           />
         </div>
-        <div>
+        <h3 className="title-all-cards">Todas as cartas</h3>
+        <div className="filter-bar">
+          <p className="subtitle-all-cards">Filtros de busca</p>
           <label htmlFor="name-filter">
-            Filtrar por Nome
             <input
               name="name-filter"
               id="name-filter"
@@ -191,10 +191,10 @@ export default class App extends React.Component {
               type="text"
               onChange={ this.nameFilter }
               disabled={ trunfoChecked }
+              placeholder="Nome da carta"
             />
           </label>
           <label htmlFor="rare-filter">
-            Filtrar por Raridade
             <select
               name="rare-filter"
               id="rare-filter"
@@ -208,8 +208,7 @@ export default class App extends React.Component {
               <option value="muito raro">muito raro</option>
             </select>
           </label>
-          <label htmlFor="trunfo-filter">
-            Filtrar por Super Trunfo
+          <label htmlFor="trunfo-filter" className="trunfo-filter-label">
             <input
               name="trunfo-filter"
               id="trunfo-filter"
@@ -218,6 +217,7 @@ export default class App extends React.Component {
               checked={ trunfoChecked }
               onChange={ this.trunfoFilter }
             />
+            Super Trybe Trunfo
           </label>
           {informationFiltered.map((card) => (
             <div key={ `div-${card.cardName}` }>

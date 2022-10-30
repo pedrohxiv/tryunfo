@@ -112,7 +112,6 @@ export default class Form extends Component {
             <span>Você já tem um Super Trunfo em seu baralho</span>
           ) : (
             <label htmlFor="trunfo">
-              Super Trybe Trunfo
               <input
                 name="cardTrunfo"
                 id="trunfo"
@@ -121,6 +120,7 @@ export default class Form extends Component {
                 checked={ cardTrunfo }
                 onChange={ onInputChange }
               />
+              Super Trybe Trunfo
             </label>
           )}
           <button
