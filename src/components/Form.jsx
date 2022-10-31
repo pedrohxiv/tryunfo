@@ -109,7 +109,9 @@ export default class Form extends Component {
         </p>
         <div>
           {hasTrunfo ? (
-            <span>Você já tem um Super Trunfo em seu baralho</span>
+            <span>
+              Você já tem um Super Trunfo em seu baralho
+            </span>
           ) : (
             <label htmlFor="trunfo">
               <input

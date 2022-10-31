@@ -16,16 +16,32 @@ export default class Card extends Component {
 
     return (
       <div className="card-div">
-        <h3 data-testid="name-card">{cardName}</h3>
-        <img data-testid="image-card" src={ cardImage } alt={ cardName } />
-        <p data-testid="description-card">{cardDescription}</p>
-        <span data-testid="attr1-card">{cardAttr1}</span>
-        <span data-testid="attr2-card">{cardAttr2}</span>
-        <span data-testid="attr3-card">{cardAttr3}</span>
-        <p data-testid="rare-card">{cardRare}</p>
+        <h3 data-testid="name-card" className="card-div-title">
+          {cardName}
+        </h3>
+        <p data-testid="rare-card" className="card-div-rare">{cardRare}</p>
         {cardTrunfo === true && (
-          <span data-testid="trunfo-card">Super Trunfo</span>
+          <span data-testid="trunfo-card" className="card-div-trunfo">Super Trunfo</span>
         )}
+        <img
+          data-testid="image-card"
+          src={ cardImage }
+          alt={ cardName }
+          className="card-div-img"
+        />
+        <p data-testid="description-card" className="card-div-desc">{cardDescription}</p>
+        <span data-testid="attr1-card" className="card-div-attr1">
+          Att01..............................................................
+          {cardAttr1}
+        </span>
+        <span data-testid="attr2-card" className="card-div-attr2">
+          Att02..............................................................
+          {cardAttr2}
+        </span>
+        <span data-testid="attr3-card" className="card-div-attr3">
+          Att03..............................................................
+          {cardAttr3}
+        </span>
       </div>
     );
   }

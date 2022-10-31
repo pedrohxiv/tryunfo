@@ -74,29 +74,23 @@ export default class App extends React.Component {
     this.setState(
       { saveInformation: arrInformation, informationFiltered: arrInformation },
       () => {
-        this.setState(
-          {
-            cardName: '',
-            cardDescription: '',
-            cardAttr1: '0',
-            cardAttr2: '0',
-            cardAttr3: '0',
-            cardImage: '',
-            cardRare: 'normal',
-            cardTrunfo: false,
-          },
-          () => { this.checkSaveButton(); },
-        );
+        this.setState({
+          cardName: '',
+          cardDescription: '',
+          cardAttr1: '0',
+          cardAttr2: '0',
+          cardAttr3: '0',
+          cardImage: '',
+          cardRare: 'normal',
+          cardTrunfo: false,
+        }, () => { this.checkSaveButton(); });
       },
     );
   };
 
   onInputChange = ({ target: { name, value, type, checked } }) => {
     value = type === 'checkbox' ? checked : value;
-    this.setState(
-      { [name]: value },
-      () => { this.checkSaveButton(); },
-    );
+    this.setState({ [name]: value }, () => { this.checkSaveButton(); });
   };
 
   deleteCart = ({ target }) => {
@@ -219,8 +213,10 @@ export default class App extends React.Component {
             />
             Super Trybe Trunfo
           </label>
+        </div>
+        <div className="all-cards">
           {informationFiltered.map((card) => (
-            <div key={ `div-${card.cardName}` }>
+            <div key={ `div-${card.cardName}` } className="div-card">
               <Card
                 key={ card.cardName }
                 cardName={ card.cardName }
@@ -236,6 +232,7 @@ export default class App extends React.Component {
                 key={ `delete-button-${card.cardName}` }
                 name={ card.cardName }
                 type="button"
+                id="delete-button"
                 data-testid="delete-button"
                 onClick={ this.deleteCart }
               >
